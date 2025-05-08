@@ -1,0 +1,29 @@
+{# templates/articles/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+    <h1>Liste des articles</h1>
+
+    {# Condition : on vérifie qu'il y a au moins un article #}
+    {% if articles is not empty %}
+        <ul>
+            {# Boucle : parcours de chaque article #}
+            {% for article in articles %}
+                <li>
+                    {# Affichage du titre #}
+                    <strong>{{ article.titre }}</strong>
+                    {# Affichage d’un badge selon la publication #}
+                    {% if article.publie %}
+                        <span style="color: green;">(Publié)</span>
+                    {% else %}
+                        <span style="color: red;">(Non publié)</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun article disponible.</p>
+    {% endif %}
+{% endblock %}
